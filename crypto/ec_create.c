@@ -1,5 +1,4 @@
 #include "hblk_crypto.h"
-#include "stdio.h"
 
 /**
  * ec_create - creates a new EC key pair with the elliptic curve
