@@ -13,6 +13,9 @@ EC_KEY *ec_from_pub(uint8_t const pub[EC_PUB_LEN])
 	EC_POINT *newPoint = NULL;
 	const EC_GROUP *newGroup = NULL;
 
+	if (!pub)
+		return (NULL);
+
 	newECKey = EC_KEY_new_by_curve_name(EC_CURVE);
 	if (!newECKey)
 		return (NULL);
