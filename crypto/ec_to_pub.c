@@ -10,22 +10,17 @@
 */
 uint8_t *ec_to_pub(EC_KEY const *key, uint8_t pub[EC_PUB_LEN])
 {
-	uint8_t *pubBuf;
-	BN_CTX *ctxPub = BN_CTX_new();
-	int index;
-
 	if (!key)
 	{
 		return (NULL);
 	}
 
-	EC_KEY_key2buf(key, EC_KEY_get_conv_form(key), &pubBuf, ctxPub);
-
-	for (index = 0; index < EC_PUB_LEN; index++)
-		pub[index] = pubBuf[index];
-
-	BN_CTX_free(ctxPub);
-	free(pubBuf);
+	if (!EC_POINT_point2oct(EC_KEY_get0_group(key),
+		EC_KEY_get0_public_key(key),
+		POINT_CONVERSION_UNCOMPRESSED, pub, EC_PUB_LEN, NULL))
+	{
+		return (NULL);
+	}
 
 	return (pub);
 }
