@@ -55,7 +55,7 @@ int _generateKeySave(EC_KEY *key, char const *folder, int typeFile)
 {
 	FILE *fileStream = NULL;
 
-	fileStream = fopen(folder, "a+");
+	fileStream = fopen(folder, "w+");
 	if (!fileStream)
 		return (0);
 
