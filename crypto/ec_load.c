@@ -1,6 +1,33 @@
 #include "hblk_crypto.h"
 
 /**
+ * _generateFilePath - Allocate a new char pointer to crate the full filepath
+ *
+ * @folder: The path of the folder
+ * @fileName: The name of the file
+ *
+ * Return: NULL if it failled, the filePath that is a pointer of char otherwise
+*/
+char *_generateFilePath(char const *folder, char const *fileName)
+{
+	char *filePath = NULL;
+	int folderLength, fileLength;
+
+	folderLength = strlen(folder);
+	fileLength = strlen(fileName);
+
+	filePath = calloc((folderLength + fileLength + 2), sizeof(char));
+	if (filePath == NULL)
+		return (NULL);
+
+	strcat(filePath, folder);
+	strcat(filePath, "/");
+	strcat(filePath, fileName);
+
+	return (filePath);
+}
+
+/**
  * ec_load - Load an EC key pair from the disk
  * By finding key.pem for private key and key_pub.pem for public key
  *
