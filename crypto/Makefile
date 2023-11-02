@@ -12,8 +12,8 @@ all: prog clean
 prog: $(OBJ_FILES)
 	$(CC) $(CFLAGS) $(SRC_FILES) $(LIBFLAGS)
 
+$(LIBNAME): $(OBJ_FILES)
+	ar -rc $(LIBNAME) $(OBJ_FILES)
+
 clean: $(OBJ_FILES)
 	rm -f $(OBJ_FILES)
-
-$(LIBNAME): $(OBJ_FILES) clean
-	ar -rc $(LIBNAME) $(OBJ_FILES)
