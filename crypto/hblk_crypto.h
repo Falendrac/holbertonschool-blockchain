@@ -55,5 +55,6 @@ int ec_save(EC_KEY *key, char const *folder);
 char *_generateFilePath(char const *folder, char const *fileName);
 void checkDirectory(char const *folder);
 int _generateKeySave(EC_KEY *key, char const *folder, int typeFile);
+EC_KEY *ec_load(char const *folder);
 
 #endif
